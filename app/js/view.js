@@ -31,7 +31,9 @@ function view () {
 
         },
 
-
+        removeTodoItem(id) {
+            document.querySelector(`[data-todo-id="${id}"]`).remove();
+        },
 
         clearForm() {
             this.form.reset();

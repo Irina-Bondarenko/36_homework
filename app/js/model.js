@@ -41,15 +41,21 @@ function model () {
 
             const updatedData = data.filter(todoItem => todoItem.id !== id)
 
-            localStorage.setItem(this.dbName, JSON.stringify(updatedData));
+            if(updatedData.length) {
+                localStorage.setItem(this.dbName, JSON.stringify(updatedData));
+            } else {
+                localStorage.removeItem(this.dbName)
+            }
+
             },
+
 
         init(dbKey) {
             this.setDBName(dbKey);
 
             const savedData = this.getData();
 
-            this.currentID = savedData ? savedData[savedData.length-1].id+1 : 1;
+            this.currentID = savedData ? savedData[savedData.length-1].id + 1 : 1;
 
         },
 

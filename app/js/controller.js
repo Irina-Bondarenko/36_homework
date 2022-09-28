@@ -68,7 +68,7 @@ function controller (view, model, payload) {
         let todoId = event.target.closest('[data-todo-id]').getAttribute(`data-todo-id`);
         todoId = Number(todoId)
         model.removeTodoItem(todoId);
-
+        view.removeTodoItem(todoId);
     }
 
 
@@ -78,4 +78,4 @@ function controller (view, model, payload) {
 
     return {};
 
-};
+}
