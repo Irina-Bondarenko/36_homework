@@ -38,9 +38,6 @@ function controller (view, model, payload) {
 
     }
 
-
-
-
     const submitHandler = (event) => {
         event.preventDefault();
         event.stopPropagation();
@@ -51,12 +48,34 @@ function controller (view, model, payload) {
         if(!data.success) throw new Error("Something wrong with saving data");
 
         view.renderTodoItem(data.savedData);
+        view.clearForm();
+
+    }
+
+    const loadHandler = (event) => {
+        const todoItems = model.getData();
+        if(!todoItems) return;
+
+        todoItems.forEach(item => view.renderTodoItem(item));
+
+    }
+
+    const removeTodoHandler = (event) => {
+        event.stopPropagation();
+
+        if (!event.target.classList.contains("remove")) return;
+
+        let todoId = event.target.closest('[data-todo-id]').getAttribute(`data-todo-id`);
+        todoId = Number(todoId)
+        model.removeTodoItem(todoId);
 
     }
 
 
     form.addEventListener("submit", submitHandler);
+    window.addEventListener("DOMContentLoaded", loadHandler);
+    todosContainer.addEventListener("click", removeTodoHandler);
 
-    return {}
+    return {};
 
-}
+};

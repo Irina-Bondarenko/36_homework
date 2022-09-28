@@ -8,8 +8,10 @@ void function () {
 
     }
 
-    const app = controller(view(), model(), payload);
-
-
+    const app = controller(
+        view(),
+        model(),
+        payload
+    );
 
 }();

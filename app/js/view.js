@@ -6,9 +6,12 @@ function view () {
         const wrapperElement = document.createElement('div');
         wrapperElement.classList.add('col-4');
 
+        wrapperElement.setAttribute('data-todo-id', data.id)
+
         wrapperElement.innerHTML = `<div class="taskWrapper">
             <div class="taskHeading">${data.title}</div>
-            <div class="taskDescription">${data.description}</div>
+            <div class="taskDescription mb-3">${data.description}</div>
+            <button class="btn btn-danger remove">Remove</button>
             </div>`;
 
         return wrapperElement;
@@ -25,7 +28,13 @@ function view () {
             const itemTemplate = createTodoItem(data);
 
             this.todosContainer.append(itemTemplate);
-            console.log(itemTemplate)
+
+        },
+
+
+
+        clearForm() {
+            this.form.reset();
 
         },
 
